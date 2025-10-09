@@ -1,0 +1,27 @@
+Nama	: Kevin Erfian Pratama Putra
+NIM	: 224308086
+Kelas	: TKA-7D
+
+Analisis dan Diskusi
+
+Minggu 6
+
+Analisis Hasil:
+1. Seberapa baik deteksi jalur dengan Instance Segmentation dibandingkan Canny?
+Metode Instance Segmentation dengan model YOLOv8-seg menunjukkan hasil deteksi jalur rel yang lebih baik dibandingkan metode Canny Edge Detection. Canny bekerja dengan mendeteksi perubahan intensitas piksel untuk menemukan tepi, sehingga hasilnya sangat bergantung pada kontras dan kondisi pencahayaan gambar. Pada kondisi ideal dengan pencahayaan stabil, metode ini cukup efektif dalam menampilkan garis tepi jalur. Namun, pada lingkungan nyata yang kompleks, seperti adanya bayangan, pantulan, atau permukaan rel yang kotor, metode Canny menjadi kurang akurat dan sering menghasilkan deteksi tepi yang tidak relevan. Sebaliknya, Instance Segmentation mampu mengenali area jalur secara kontekstual karena menggunakan pendekatan pembelajaran mendalam (deep learning), sehingga lebih stabil terhadap variasi kondisi visual dan memberikan hasil yang lebih akurat.
+
+2. Apakah kombinasi kedua metode dapat meningkatkan akurasi?
+Kombinasi antara Instance Segmentation dan Canny Edge Detection dapat memberikan hasil yang lebih akurat dibandingkan penggunaan salah satu metode secara tunggal. Instance Segmentation dapat digunakan untuk mengidentifikasi area jalur rel secara keseluruhan melalui proses segmentasi, sedangkan metode Canny dapat mempertegas garis batas tepi di dalam area tersebut. Dengan cara ini, sistem dapat mengurangi kesalahan deteksi di luar area rel dan memperkuat kejelasan batas tepi jalur. Kombinasi kedua metode ini juga bermanfaat untuk menghasilkan deteksi garis tengah rel yang lebih presisi, yang sangat penting dalam sistem navigasi otomatis berbasis visi komputer.
+
+3. Apa dampak perubahan parameter Canny (thresholds) terhadap hasil deteksi?
+Perubahan nilai parameter threshold pada metode Canny memiliki pengaruh besar terhadap hasil deteksi. Jika nilai threshold terlalu rendah, sistem menjadi sangat sensitif terhadap noise sehingga banyak tepi yang tidak relevan ikut terdeteksi. Sebaliknya, jika nilai threshold terlalu tinggi, sebagian besar garis rel tidak akan terdeteksi karena dianggap bukan tepi yang signifikan. Oleh karena itu, pemilihan parameter yang tepat harus dilakukan secara eksperimental untuk mendapatkan keseimbangan antara sensitivitas dan ketepatan hasil. Nilai threshold yang optimal akan menghasilkan deteksi tepi yang jelas dan stabil tanpa gangguan dari noise di sekitar rel.
+
+Diskusi:
+1. Kapan lebih baik menggunakan Canny Edge Detection dibanding Instance Segmentation?
+Metode Canny Edge Detection lebih baik digunakan ketika sistem memiliki keterbatasan sumber daya komputasi dan beroperasi pada lingkungan dengan kondisi pencahayaan yang stabil. Metode ini relatif sederhana, cepat, dan tidak membutuhkan proses pelatihan model seperti Instance Segmentation. Oleh karena itu, Canny sangat cocok untuk aplikasi sederhana seperti pengujian di laboratorium atau sistem dengan perangkat keras terbatas. Sebaliknya, Instance Segmentation lebih unggul ketika digunakan di lingkungan yang dinamis dan kompleks, seperti pada jalur rel luar ruangan yang memiliki variasi warna, tekstur, dan pencahayaan.
+
+2. Bagaimana cara meningkatkan deteksi jalur dengan tuning parameter YOLOv8-seg?
+Akurasi deteksi menggunakan YOLOv8-seg dapat ditingkatkan melalui proses tuning parameter model dan kualitas dataset. Beberapa cara yang dapat dilakukan antara lain dengan menyesuaikan ukuran citra input (image size), confidence threshold, dan IoU threshold untuk mengontrol tingkat keyakinan model terhadap hasil deteksi. Selain itu, penerapan data augmentation seperti rotasi, pengaturan kecerahan, atau perubahan sudut pandang dapat membantu model menjadi lebih adaptif terhadap berbagai kondisi di lapangan. Proses fine-tuning model menggunakan dataset khusus rel kereta juga sangat disarankan agar model lebih fokus mengenali bentuk dan pola jalur rel. Sebagai tambahan, hasil segmentasi dapat diperbaiki dengan teknik post-processing seperti Hough Transform atau Canny di area hasil segmentasi untuk mempertegas garis rel.
+
+3. Bagaimana metode ini dapat diterapkan dalam sistem navigasi kereta otomatis?
+Metode deteksi jalur berbasis Instance Segmentation dan Canny dapat diterapkan pada sistem navigasi kereta otomatis (driverless train system) untuk meningkatkan akurasi persepsi visual. Hasil segmentasi dari YOLOv8-seg dapat digunakan untuk mengenali area lintasan rel secara keseluruhan, sedangkan metode Canny dapat menentukan posisi garis tengah lintasan secara presisi. Informasi ini kemudian dapat digunakan oleh sistem kontrol untuk melakukan koreksi arah, menjaga posisi kereta tetap di tengah rel, serta mendeteksi kemungkinan hambatan di jalur depan. Dengan integrasi ke sistem kontrol kecepatan dan arah, metode ini mendukung pengembangan sistem navigasi kereta otomatis yang lebih aman, efisien, dan responsif terhadap kondisi lintasan di lapangan.
